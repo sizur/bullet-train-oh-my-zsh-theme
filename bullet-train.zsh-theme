@@ -419,9 +419,9 @@ prompt_time() {
   fi
 
   if [[ $BULLETTRAIN_TIME_12HR == true ]]; then
-    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%r}
+    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{"%I:%M:%S %p"}
   else
-    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%X}
+    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{"%H:%M:%S"}
   fi
 }
 
@@ -470,12 +470,13 @@ prompt_char() {
 }
 
 # Prompt Line Separator
-prompt_line_sep() {
-  if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]]; then
+if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]]; then
     # newline wont print without a non newline character, so add a zero-width space
-    echo -e '\n\u200B'
-  fi
-}
+    PLSEP=$(printf '\n\u200B')
+else
+    PLSEP=''
+fi
+
 # ------------------------------------------------------------------------------
 # MAIN
 # Entry point
@@ -496,4 +497,6 @@ build_prompt() {
   prompt_end
 }
 
-PROMPT='$(prompt_line_sep)%{%f%b%k%}$(build_prompt)$(prompt_line_sep)%{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
+PROMPT='${PLSEP}%{%f%b%k%}$(build_prompt)${PLSEP}%{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
+#PROMPT='$(prompt_line_sep)%{%f%b%k%}$(build_prompt)$(prompt_line_sep)%{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
+
