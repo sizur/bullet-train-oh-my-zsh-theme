@@ -88,13 +88,13 @@ if [ ! -n "${BULLETTRAIN_PERL_SHOW+1}" ]; then
   BULLETTRAIN_PERL_SHOW=true
 fi
 if [ ! -n "${BULLETTRAIN_PERL_BG+1}" ]; then
-  BULLETTRAIN_PERL_BG=magenta
+  BULLETTRAIN_PERL_BG=green
 fi
 if [ ! -n "${BULLETTRAIN_PERL_FG+1}" ]; then
   BULLETTRAIN_PERL_FG=white
 fi
 if [ ! -n "${BULLETTRAIN_PERL_PREFIX+1}" ]; then
-  BULLETTRAIN_PERL_PREFIX=♦️
+  BULLETTRAIN_PERL_PREFIX=""
 fi
 
 # RUBY
