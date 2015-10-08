@@ -1,3 +1,4 @@
+# -*- shell-script -*-
 # README
 #
 # In order for this theme to render correctly, you will need a
@@ -80,6 +81,20 @@ if [ ! -n "${BULLETTRAIN_NVM_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_NVM_PREFIX+1}" ]; then
   BULLETTRAIN_NVM_PREFIX="⬡ "
+fi
+
+# PERL
+if [ ! -n "${BULLETTRAIN_PERL_SHOW+1}" ]; then
+  BULLETTRAIN_PERL_SHOW=true
+fi
+if [ ! -n "${BULLETTRAIN_PERL_BG+1}" ]; then
+  BULLETTRAIN_PERL_BG=magenta
+fi
+if [ ! -n "${BULLETTRAIN_PERL_FG+1}" ]; then
+  BULLETTRAIN_PERL_FG=white
+fi
+if [ ! -n "${BULLETTRAIN_PERL_PREFIX+1}" ]; then
+  BULLETTRAIN_PERL_PREFIX=♦️
 fi
 
 # RUBY
@@ -351,6 +366,18 @@ prompt_dir() {
   prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG $dir
 }
 
+# Perl
+# Which perl is in environment
+prompt_perl() {
+  if [[ $BULLETTRAIN_PERL_SHOW == false ]]; then
+    return
+  fi
+
+  if command -v perl > /dev/null 2>&1; then
+    prompt_segment $BULLETTRAIN_PERL_BG $BULLETTRAIN_PERL_FG $BULLETTRAIN_PERL_PREFIX"  $(which perl)"
+  fi
+}
+
 # RUBY
 # RVM: only shows RUBY info if on a gemset that is not the default one
 # RBENV: shows current ruby version active in the shell
@@ -490,6 +517,7 @@ build_prompt() {
   prompt_virtualenv
   prompt_nvm
   prompt_go
+  prompt_perl
   prompt_context
   prompt_dir
   prompt_git
