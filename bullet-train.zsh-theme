@@ -85,7 +85,7 @@ fi
 
 # PERL
 if [ ! -n "${BULLETTRAIN_PERL_SHOW+1}" ]; then
-  BULLETTRAIN_PERL_SHOW=true
+  BULLETTRAIN_PERL_SHOW=false
 fi
 if [ ! -n "${BULLETTRAIN_PERL_BG+1}" ]; then
   BULLETTRAIN_PERL_BG=green
