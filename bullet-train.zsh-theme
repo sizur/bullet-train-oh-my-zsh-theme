@@ -91,10 +91,7 @@ if [ ! -n "${BULLETTRAIN_PERL_BG+1}" ]; then
   BULLETTRAIN_PERL_BG=green
 fi
 if [ ! -n "${BULLETTRAIN_PERL_FG+1}" ]; then
-  BULLETTRAIN_PERL_FG=white
-fi
-if [ ! -n "${BULLETTRAIN_PERL_PREFIX+1}" ]; then
-  BULLETTRAIN_PERL_PREFIX=""
+  BULLETTRAIN_PERL_FG=black
 fi
 
 # RUBY
@@ -374,7 +371,7 @@ prompt_perl() {
   fi
 
   if command -v perl > /dev/null 2>&1; then
-    prompt_segment $BULLETTRAIN_PERL_BG $BULLETTRAIN_PERL_FG $BULLETTRAIN_PERL_PREFIX"  $(which perl)"
+    prompt_segment $BULLETTRAIN_PERL_BG $BULLETTRAIN_PERL_FG "$(which perl)"
   fi
 }
 
